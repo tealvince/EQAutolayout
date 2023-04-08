@@ -29,10 +29,26 @@ public func .=<T>(lhs: NSLayoutAnchor<T>, rhs: NSLayoutAnchor<T>) -> NSLayoutCon
     return lhs.constraint(equalTo: rhs)
 }
 
+public func .<= <T>(lhs: NSLayoutAnchor<T>, rhs: NSLayoutAnchor<T>) -> NSLayoutConstraint {
+    return lhs.constraint(lessThanOrEqualTo: rhs)
+}
+
+public func .>= <T>(lhs: NSLayoutAnchor<T>, rhs: NSLayoutAnchor<T>) -> NSLayoutConstraint {
+    return lhs.constraint(greaterThanOrEqualTo: rhs)
+}
+
 // Set one dimension to another
 // e.g. view1.widthAnchor .= view2.widthAnchor
 public func .=(lhs: NSLayoutDimension, rhs: NSLayoutDimension) -> NSLayoutConstraint {
     return lhs.constraint(equalTo: rhs)
+}
+
+public func .<=(lhs: NSLayoutDimension, rhs: NSLayoutDimension) -> NSLayoutConstraint {
+    return lhs.constraint(lessThanOrEqualTo: rhs)
+}
+
+public func .>=(lhs: NSLayoutDimension, rhs: NSLayoutDimension) -> NSLayoutConstraint {
+    return lhs.constraint(greaterThanOrEqualTo: rhs)
 }
 
 // Set dimension to constant
@@ -41,16 +57,40 @@ public func .=(lhs: NSLayoutDimension, rhs: CGFloat) -> NSLayoutConstraint {
     return lhs.constraint(equalToConstant: rhs)
 }
 
+public func .<=(lhs: NSLayoutDimension, rhs: CGFloat) -> NSLayoutConstraint {
+    return lhs.constraint(lessThanOrEqualToConstant: rhs)
+}
+
+public func .>=(lhs: NSLayoutDimension, rhs: CGFloat) -> NSLayoutConstraint {
+    return lhs.constraint(greaterThanOrEqualToConstant: rhs)
+}
+
 // Set anchor to anchor plus constant
 // e.g. view1.topAnchor .= view2.topAnchor + 123
 public func .=<T>(lhs: NSLayoutAnchor<T>, rhs: EQAutolayoutAnchorIntermediate<T>) -> NSLayoutConstraint {
     return lhs.constraint(equalTo: rhs.anchor, constant: rhs.constant)
 }
 
+public func .<=<T>(lhs: NSLayoutAnchor<T>, rhs: EQAutolayoutAnchorIntermediate<T>) -> NSLayoutConstraint {
+    return lhs.constraint(lessThanOrEqualTo: rhs.anchor, constant: rhs.constant)
+}
+
+public func .>=<T>(lhs: NSLayoutAnchor<T>, rhs: EQAutolayoutAnchorIntermediate<T>) -> NSLayoutConstraint {
+    return lhs.constraint(greaterThanOrEqualTo: rhs.anchor, constant: rhs.constant)
+}
+
 // Set dimension to dimension plus constant
 // e.g. view1.widthAnchor .= view2.widthAnchor + 123
 public func .=(lhs: NSLayoutDimension, rhs: EQAutolayoutDimensionIntermediate) -> NSLayoutConstraint {
     return lhs.constraint(equalTo: rhs.dimension, constant: rhs.constant)
+}
+
+public func .<=(lhs: NSLayoutDimension, rhs: EQAutolayoutDimensionIntermediate) -> NSLayoutConstraint {
+    return lhs.constraint(lessThanOrEqualTo: rhs.dimension, constant: rhs.constant)
+}
+
+public func .>=(lhs: NSLayoutDimension, rhs: EQAutolayoutDimensionIntermediate) -> NSLayoutConstraint {
+    return lhs.constraint(greaterThanOrEqualTo: rhs.dimension, constant: rhs.constant)
 }
 
 // MARK: - Intermediate values (Anchors)
