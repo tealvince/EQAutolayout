@@ -21,75 +21,104 @@ import UIKit
 
 infix operator .=: AssignmentPrecedence
 
-// MARK: - Functions
+// MARK: - Anchor to Anchor
 
-// Set one anchor to another
+// Set one anchor equal to another
 // e.g. view1.topAnchor .= view2.topAnchor
-public func .=<T>(lhs: NSLayoutAnchor<T>, rhs: NSLayoutAnchor<T>) -> NSLayoutConstraint {
+public func .= <T>(lhs: NSLayoutAnchor<T>, rhs: NSLayoutAnchor<T>) -> NSLayoutConstraint {
     return lhs.constraint(equalTo: rhs)
 }
 
+// Set one anchor less than another
+// e.g. view1.topAnchor .<= view2.topAnchor
 public func .<= <T>(lhs: NSLayoutAnchor<T>, rhs: NSLayoutAnchor<T>) -> NSLayoutConstraint {
     return lhs.constraint(lessThanOrEqualTo: rhs)
 }
 
+// Set one anchor greater than another
+// e.g. view1.topAnchor .>= view2.topAnchor
 public func .>= <T>(lhs: NSLayoutAnchor<T>, rhs: NSLayoutAnchor<T>) -> NSLayoutConstraint {
     return lhs.constraint(greaterThanOrEqualTo: rhs)
 }
 
-// Set one dimension to another
+// MARK: - Dimension to Dimension
+
+// Set one dimension equal to another
 // e.g. view1.widthAnchor .= view2.widthAnchor
-public func .=(lhs: NSLayoutDimension, rhs: NSLayoutDimension) -> NSLayoutConstraint {
+public func .= (lhs: NSLayoutDimension, rhs: NSLayoutDimension) -> NSLayoutConstraint {
     return lhs.constraint(equalTo: rhs)
 }
 
-public func .<=(lhs: NSLayoutDimension, rhs: NSLayoutDimension) -> NSLayoutConstraint {
+// Set one dimension less than another
+// e.g. view1.widthAnchor .<= view2.widthAnchor
+public func .<= (lhs: NSLayoutDimension, rhs: NSLayoutDimension) -> NSLayoutConstraint {
     return lhs.constraint(lessThanOrEqualTo: rhs)
 }
 
-public func .>=(lhs: NSLayoutDimension, rhs: NSLayoutDimension) -> NSLayoutConstraint {
+// Set one dimension greater than another
+// e.g. view1.widthAnchor .>= view2.widthAnchor
+
+public func .>= (lhs: NSLayoutDimension, rhs: NSLayoutDimension) -> NSLayoutConstraint {
     return lhs.constraint(greaterThanOrEqualTo: rhs)
 }
 
+// MARK: - Dimension to constant
+
 // Set dimension to constant
 // e.g. view1.heightAnchor .= 50.0
-public func .=(lhs: NSLayoutDimension, rhs: CGFloat) -> NSLayoutConstraint {
+public func .= (lhs: NSLayoutDimension, rhs: CGFloat) -> NSLayoutConstraint {
     return lhs.constraint(equalToConstant: rhs)
 }
 
-public func .<=(lhs: NSLayoutDimension, rhs: CGFloat) -> NSLayoutConstraint {
+// Set dimension less than constant
+// e.g. view1.heightAnchor .<= 50.0
+public func .<= (lhs: NSLayoutDimension, rhs: CGFloat) -> NSLayoutConstraint {
     return lhs.constraint(lessThanOrEqualToConstant: rhs)
 }
 
-public func .>=(lhs: NSLayoutDimension, rhs: CGFloat) -> NSLayoutConstraint {
+// Set dimension greater than constant
+// e.g. view1.heightAnchor .>= 50.0
+public func .>= (lhs: NSLayoutDimension, rhs: CGFloat) -> NSLayoutConstraint {
     return lhs.constraint(greaterThanOrEqualToConstant: rhs)
 }
 
+// MARK: - Anchor to Anchor +/- constant
+
 // Set anchor to anchor plus constant
 // e.g. view1.topAnchor .= view2.topAnchor + 123
-public func .=<T>(lhs: NSLayoutAnchor<T>, rhs: EQAutolayoutAnchorIntermediate<T>) -> NSLayoutConstraint {
+public func .= <T>(lhs: NSLayoutAnchor<T>, rhs: EQAutolayoutAnchorIntermediate<T>) -> NSLayoutConstraint {
     return lhs.constraint(equalTo: rhs.anchor, constant: rhs.constant)
 }
 
-public func .<=<T>(lhs: NSLayoutAnchor<T>, rhs: EQAutolayoutAnchorIntermediate<T>) -> NSLayoutConstraint {
+// Set anchor less than anchor plus constant
+// e.g. view1.topAnchor .<= view2.topAnchor + 123
+public func .<= <T>(lhs: NSLayoutAnchor<T>, rhs: EQAutolayoutAnchorIntermediate<T>) -> NSLayoutConstraint {
     return lhs.constraint(lessThanOrEqualTo: rhs.anchor, constant: rhs.constant)
 }
 
-public func .>=<T>(lhs: NSLayoutAnchor<T>, rhs: EQAutolayoutAnchorIntermediate<T>) -> NSLayoutConstraint {
+// Set anchor greater than anchor plus constant
+// e.g. view1.topAnchor .>= view2.topAnchor + 123
+public func .>= <T>(lhs: NSLayoutAnchor<T>, rhs: EQAutolayoutAnchorIntermediate<T>) -> NSLayoutConstraint {
     return lhs.constraint(greaterThanOrEqualTo: rhs.anchor, constant: rhs.constant)
 }
 
+// MARK: - Dimension to Dimension +/- constant
+
 // Set dimension to dimension plus constant
 // e.g. view1.widthAnchor .= view2.widthAnchor + 123
-public func .=(lhs: NSLayoutDimension, rhs: EQAutolayoutDimensionIntermediate) -> NSLayoutConstraint {
+public func .= (lhs: NSLayoutDimension, rhs: EQAutolayoutDimensionIntermediate) -> NSLayoutConstraint {
     return lhs.constraint(equalTo: rhs.dimension, constant: rhs.constant)
 }
 
-public func .<=(lhs: NSLayoutDimension, rhs: EQAutolayoutDimensionIntermediate) -> NSLayoutConstraint {
+// Set dimension less than dimension plus constant
+// e.g. view1.widthAnchor .<= view2.widthAnchor + 123
+public func .<= (lhs: NSLayoutDimension, rhs: EQAutolayoutDimensionIntermediate) -> NSLayoutConstraint {
     return lhs.constraint(lessThanOrEqualTo: rhs.dimension, constant: rhs.constant)
 }
 
-public func .>=(lhs: NSLayoutDimension, rhs: EQAutolayoutDimensionIntermediate) -> NSLayoutConstraint {
+// Set dimension greater than dimension plus constant
+// e.g. view1.widthAnchor .>= view2.widthAnchor + 123
+public func .>= (lhs: NSLayoutDimension, rhs: EQAutolayoutDimensionIntermediate) -> NSLayoutConstraint {
     return lhs.constraint(greaterThanOrEqualTo: rhs.dimension, constant: rhs.constant)
 }
 
@@ -101,15 +130,18 @@ public struct EQAutolayoutAnchorIntermediate<T: AnyObject> {
     let constant: CGFloat
 }
 
-public func +<T>(lhs: NSLayoutAnchor<T>, rhs: CGFloat) -> EQAutolayoutAnchorIntermediate<T> {
+// anchor + constant
+public func + <T>(lhs: NSLayoutAnchor<T>, rhs: CGFloat) -> EQAutolayoutAnchorIntermediate<T> {
     return EQAutolayoutAnchorIntermediate(anchor: lhs, constant: rhs)
 }
 
-public func +<T>(lhs: CGFloat, rhs: NSLayoutAnchor<T>) -> EQAutolayoutAnchorIntermediate<T> {
+// constant + anchor
+public func + <T>(lhs: CGFloat, rhs: NSLayoutAnchor<T>) -> EQAutolayoutAnchorIntermediate<T> {
     return EQAutolayoutAnchorIntermediate(anchor: rhs, constant: lhs)
 }
 
-public func -<T>(lhs: NSLayoutAnchor<T>, rhs: CGFloat) -> EQAutolayoutAnchorIntermediate<T> {
+// anchor - constant
+public func - <T>(lhs: NSLayoutAnchor<T>, rhs: CGFloat) -> EQAutolayoutAnchorIntermediate<T> {
     return EQAutolayoutAnchorIntermediate(anchor: lhs, constant: -rhs)
 }
 
@@ -121,14 +153,17 @@ public struct EQAutolayoutDimensionIntermediate {
     let constant: CGFloat
 }
 
-public func +(lhs: NSLayoutDimension, rhs: CGFloat) -> EQAutolayoutDimensionIntermediate {
+// dimension + constant
+public func + (lhs: NSLayoutDimension, rhs: CGFloat) -> EQAutolayoutDimensionIntermediate {
     return EQAutolayoutDimensionIntermediate(dimension: lhs, constant: rhs)
 }
 
-public func +(lhs: CGFloat, rhs: NSLayoutDimension) -> EQAutolayoutDimensionIntermediate {
+// constant + dimension
+public func + (lhs: CGFloat, rhs: NSLayoutDimension) -> EQAutolayoutDimensionIntermediate {
     return EQAutolayoutDimensionIntermediate(dimension: rhs, constant: lhs)
 }
 
-public func -(lhs: NSLayoutDimension, rhs: CGFloat) -> EQAutolayoutDimensionIntermediate {
+// dimension - constant
+public func - (lhs: NSLayoutDimension, rhs: CGFloat) -> EQAutolayoutDimensionIntermediate {
     return EQAutolayoutDimensionIntermediate(dimension: lhs, constant: -rhs)
 }
