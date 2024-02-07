@@ -20,6 +20,8 @@ import UIKit
 ///  ])
 
 infix operator .=: AssignmentPrecedence
+infix operator .>=: AssignmentPrecedence
+infix operator .<=: AssignmentPrecedence
 
 // MARK: - Anchor to Anchor
 
